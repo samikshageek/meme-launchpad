@@ -1,17 +1,43 @@
 import { Hub } from '@babel/traverse';
 import React, { useState } from 'react';
-import {Text , View, Button , TouchableOpacity,StyleSheet} from 'react-native';
+import {Text , View, Button , TouchableOpacity,StyleSheet ,AccessibilityActionEvent, Alert} from 'react-native';
+
+
 
 const ImgLayout = (props) => {
 
     const [selectedTemplate, setTemplate] = useState('');
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'React POST Request Example' })
+    };
+
+    callMemeApi = (item) =>{
+        Alert.alert(item + " pressed");
+    
+       fetch("https://fun-meme-api.herokuapp.com/trending", requestOptions)
+        .then(response => 
+            {response.json();
+            console.log(response)
+        });
+        
+
+        
+    }
+   
+    
+
     return(
         <View style={styles.mainStyle}>
             <View style ={styles.row}> 
         
             {props.category.map(item => (
                 <TouchableOpacity key={item} style={[styles.button, selectedTemplate === item && styles.selected]}  onPress ={() => {
-                    setTemplate(item)
+                    setTemplate(item);
+                    //Alert.alert(item + " pressed");
+                   {this.callMemeApi(item)};
                 }}>
                 <Text style={styles.text}>{item}</Text>
                 </TouchableOpacity>
