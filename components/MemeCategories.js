@@ -18,7 +18,7 @@ const MemeCategory = (props) => {
     
     <ImageBackground source={ require('../components/stars.png')}  style={styles.image}>
     
-     <ImgLayout category={['Human', 'Animals', 'Food', 'Art', 'The trenders', 'The Classics' ,'The Niche']} />
+     <ImgLayout category={['Trending Now', 'Popular Templates', 'Blank Templates', 'Classic Templates' ]} />
 
     </ImageBackground>
     
