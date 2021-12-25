@@ -11,17 +11,21 @@ const ImgLayout = (props) => {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'React POST Request Example' })
+        //body: JSON.stringify({ title: 'React POST Request Example' })
     };
 
     callMemeApi = (item) =>{
         Alert.alert(item + " pressed");
     
        fetch("https://fun-meme-api.herokuapp.com/trending", requestOptions)
-        .then(response => 
-            {response.json();
-            console.log(response)
-        });
+        .then(response => {
+            console.log(response);
+            response.json().then(data => {
+                console.log(data);
+            })
+        })
+
+        
         
 
         
