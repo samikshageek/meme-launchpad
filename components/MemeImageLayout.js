@@ -1,6 +1,8 @@
 import { Hub } from '@babel/traverse';
 import React, { useState } from 'react';
 import {Text , View, Button , TouchableOpacity,StyleSheet ,AccessibilityActionEvent, Alert} from 'react-native';
+import { Card } from 'react-native-paper';
+import CardComponent from '../Wdgets/CardWidget';
 
 
 
@@ -51,6 +53,11 @@ const ImgLayout = (props) => {
         
 
             </View>
+            
+            {props.category.map(item => (
+                <CardComponent Item={item}/>
+            ))}
+        
         </View>
     )
 }
