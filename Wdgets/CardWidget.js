@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View ,Text, Image} from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 
@@ -10,8 +10,9 @@ const CardComponent = (props) =>{
 
     <View>
          {console.log("props.Item", props.Item)}
-         
-            <Card>
+         <Image source={{uri:'https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif' }}  style={{ resizeMode: 'cover', width: '100%', height: '40%' }}/>
+          
+         <Card>
           <Card.Content>
           <Title>{props.Item}</Title>
           <Paragraph>Card content</Paragraph>
@@ -22,7 +23,6 @@ const CardComponent = (props) =>{
          <Button>Ok</Button>
           </Card.Actions>
            </Card>
-  
    
    
     </View>

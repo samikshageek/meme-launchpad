@@ -16,7 +16,7 @@ const MemeCategory = (props) => {
   <View style={styles.container}>
   <Text style={styles.text}>Select Template</Text>
     
-    <ImageBackground source={ require('../components/stars.png')}  style={styles.image}>
+    <ImageBackground source={ require('../components/stars.png')} >
     
      <ImgLayout category={['Trending Now', 'Popular Templates', 'Blank Templates', 'Classic Templates' ]} />
 

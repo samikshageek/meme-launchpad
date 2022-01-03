@@ -192,7 +192,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
+    implementation 'com.facebook.fresco:animated-gif:2.5.0'
+     
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
      implementation project(':react-native-splash-screen')

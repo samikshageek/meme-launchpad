@@ -55,7 +55,7 @@ const ImgLayout = (props) => {
             </View>
             
             {props.category.map(item => (
-                <CardComponent Item={item}/>
+                <CardComponent Item={item} key={item}/>
             ))}
         
         </View>
