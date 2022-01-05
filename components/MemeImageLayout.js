@@ -39,7 +39,7 @@ const ImgLayout = (props) => {
         <View style={styles.mainStyle}>
             <View style ={styles.row}> 
         
-            {props.category.map(item => (
+            {/* {props.category.map(item => (
                 <TouchableOpacity key={item} style={[styles.button, selectedTemplate === item && styles.selected]}  onPress ={() => {
                     setTemplate(item);
                     //Alert.alert(item + " pressed");
@@ -49,13 +49,20 @@ const ImgLayout = (props) => {
                 </TouchableOpacity>
             )
            
-             )}
+             )} */}
         
 
             </View>
             
-            {props.category.map(item => (
+            {/* {props.category.map(item => (
                 <CardComponent Item={item} key={item}/>
+            ))}
+            
+            {props.displayImg.map(item => (
+                 <CardComponent  image={item} key={item}/>
+            ))} */}
+            {props.temp.map(item => (
+                 <CardComponent temp ={item} key={Object.keys(item)}/>
             ))}
         
         </View>

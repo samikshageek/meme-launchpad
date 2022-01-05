@@ -6,6 +6,10 @@ const background = { uri: "https://reactjs.org/logo-og.png" };
 const screenWidth = Dimensions.get('window').width ;
 const screenHeight = Dimensions.get('window').height ;
 
+let category=[{"Trending Now": "https://c.tenor.com/olNJM0xe5oAAAAAC/working-from-home-wfh.gif"},
+              {"Popular Templates": "https://c.tenor.com/9yVaQ1AQQzMAAAAS/teddy-bear.gif"},
+               {"Blank Templates": "https://c.tenor.com/uPUduP9YZegAAAAC/sleepy-tired.gif"},
+               {"Classic Templates": "https://c.tenor.com/OQJmvVwLZ5YAAAAi/tkthao219-bubududu.gif"}]
 
 const MemeCategory = (props) => {
   
@@ -18,7 +22,14 @@ const MemeCategory = (props) => {
     
     <ImageBackground source={ require('../components/stars.png')} >
     
-     <ImgLayout category={['Trending Now', 'Popular Templates', 'Blank Templates', 'Classic Templates' ]} />
+     {/* <ImgLayout category={['Trending Now', 'Popular Templates', 'Blank Templates', 'Classic Templates' ]}
+                displayImg ={["https://c.tenor.com/olNJM0xe5oAAAAAC/working-from-home-wfh.gif",
+                              "https://c.tenor.com/9yVaQ1AQQzMAAAAS/teddy-bear.gif",
+                              "https://c.tenor.com/uPUduP9YZegAAAAC/sleepy-tired.gif",
+                              "https://c.tenor.com/OQJmvVwLZ5YAAAAi/tkthao219-bubududu.gif"]}
+                temp={category}/> */}
+
+      <ImgLayout temp={category}/>
 
     </ImageBackground>
     
