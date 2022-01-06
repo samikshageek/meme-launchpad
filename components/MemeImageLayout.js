@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {Text , View, Button , TouchableOpacity,StyleSheet ,AccessibilityActionEvent, Alert} from 'react-native';
 import { Card } from 'react-native-paper';
 import CardComponent from '../Wdgets/CardWidget';
+import SearchBoxComponent from './searchbarComponent';
 
 
 
@@ -53,16 +54,11 @@ const ImgLayout = (props) => {
         
 
             </View>
-            
-            {/* {props.category.map(item => (
-                <CardComponent Item={item} key={item}/>
-            ))}
-            
-            {props.displayImg.map(item => (
-                 <CardComponent  image={item} key={item}/>
-            ))} */}
-            {props.temp.map(item => (
-                 <CardComponent temp ={item} key={Object.keys(item)}/>
+            <View style={styles.searchbar}>
+               <SearchBoxComponent />
+            </View>
+            {props.categories.map(item => (
+                 <CardComponent category ={item} key={Object.keys(item)}/>
             ))}
         
         </View>
@@ -97,6 +93,9 @@ const styles = StyleSheet.create({
     selected : {
         backgroundColor : 'coral',
         borderWidth : 0
+    },
+    searchbar:{
+        marginBottom :"5%"
     }
 
 })
