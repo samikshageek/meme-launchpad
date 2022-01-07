@@ -2,7 +2,8 @@ import { Hub } from '@babel/traverse';
 import React, { useState } from 'react';
 import {Text , View, Button , TouchableOpacity,StyleSheet ,AccessibilityActionEvent, Alert} from 'react-native';
 import { Card } from 'react-native-paper';
-import CardComponent from '../Wdgets/CardWidget';
+import CardComponent from '../Wdgets/CategoriesCardWidget';
+import ExploreCardComponent from '../Wdgets/ExploreCardWidget';
 import SearchBoxComponent from './searchbarComponent';
 
 
@@ -57,6 +58,9 @@ const ImgLayout = (props) => {
             <View style={styles.searchbar}>
                <SearchBoxComponent />
             </View>
+
+            <ExploreCardComponent />
+            
             {props.categories.map(item => (
                  <CardComponent category ={item} key={Object.keys(item)}/>
             ))}
