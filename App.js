@@ -29,6 +29,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import SplashScreen from 'react-native-splash-screen'
+import BottomDrawerNavigator from './components/BottomNavigationDrawerComponent';
 
 
 const App: () => Node = () => {
@@ -46,7 +47,8 @@ const App: () => Node = () => {
     <View > 
 
       
-      <MemeCategories />
+      {/* <MemeCategories /> */}
+      <BottomDrawerNavigator />
     </View>
   );
 };
