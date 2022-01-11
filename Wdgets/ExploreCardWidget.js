@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useEffect , useState} from 'react';
 import { View , Text , StyleSheet ,SafeAreaView ,FlatList , Dimensions } from 'react-native';
 import {Button , Card , Title } from 'react-native-paper';
 
@@ -31,6 +31,19 @@ const ExploreCardComponent = () =>{
               text :"Sips Tea"
           }
       ]
+     
+      const requestOptions ={
+          method: "POST",
+          headers:{'Content-Type': "application/json"},
+          body :JSON.stringify({ memeType : "reactionTemplate", "url" : "https://c.tenor.com/l_2ceqoufGoAAAAC/monsters-inc-boo.gif"})
+      }
+      useEffect(() =>{
+         fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate", requestOptions)
+         .then(response =>{
+             console.log(response)
+             response.json().then(data =>console.log(data));
+         })
+      })
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
                    <Card>
