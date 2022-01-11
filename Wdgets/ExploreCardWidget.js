@@ -13,36 +13,63 @@ const ExploreCardComponent = () =>{
           {
               id : 1 ,
               url : "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
-              text:"Reaction"
+              text:"reaction",
+              requestOptions :{
+                  body:"",
+                  method: "POST",
+                  headers:{'Content-Type': "application/json"}
+                }
           },
           {
               id: 2 ,
               url: "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
-              text : "WFH"
+              text : "wfh",
+              requestOptions :{
+                  body:"",
+              method: "POST",
+              headers:{'Content-Type': "application/json"}
+            }
           },
           {
               id:3 ,
               url : "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
-              text : "Everything is fine"
+              text : "stayHome",
+              requestOptions :{
+                  body:"",
+                  method: "POST",
+                  headers:{'Content-Type': "application/json"}
+             }
           },
           {
               id : 4 ,
               url : "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
-              text :"Sips Tea"
+              text :"foodie",
+              requestOptions :{
+                  body:"",
+                  method: "POST",
+                  headers:{'Content-Type': "application/json"}
+              }
           }
       ]
      
-      const requestOptions ={
-          method: "POST",
-          headers:{'Content-Type': "application/json"},
-          body :JSON.stringify({ memeType : "reactionTemplate", "url" : "https://c.tenor.com/l_2ceqoufGoAAAAC/monsters-inc-boo.gif"})
-      }
+     
       useEffect(() =>{
-         fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate", requestOptions)
-         .then(response =>{
-             console.log(response)
-             response.json().then(data =>console.log(data));
-         })
+        
+
+         DATA.forEach(element => {
+            element.requestOptions.body = JSON.stringify({
+                memeType :element.text+"Template"
+            })
+              
+         });
+        
+        DATA.forEach(element =>{
+            fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate",element.requestOptions)
+            .then(response =>{
+                    response.json().then(data => console.log("data",data));
+                })
+             
+        })
       })
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
