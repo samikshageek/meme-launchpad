@@ -9,10 +9,10 @@ const ExploreCardComponent = () =>{
   
 
 
-      const DATA= [
+      const [DATA, setDATA]= useState([
           {
               id : 1 ,
-              url : "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
+              url : "ve-veranda.gif",
               text:"reaction",
               requestOptions :{
                   body:"",
@@ -22,7 +22,7 @@ const ExploreCardComponent = () =>{
           },
           {
               id: 2 ,
-              url: "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
+              url: "ve-veranda.gif",
               text : "wfh",
               requestOptions :{
                   body:"",
@@ -32,7 +32,7 @@ const ExploreCardComponent = () =>{
           },
           {
               id:3 ,
-              url : "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
+              url : "ve-veranda.gif",
               text : "stayHome",
               requestOptions :{
                   body:"",
@@ -51,8 +51,34 @@ const ExploreCardComponent = () =>{
               }
           }
       ]
-     
-     
+      );
+      
+      let  template=[]; 
+      
+      const fetchTemplate = (element) => {
+         
+        fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate",element.requestOptions)
+        .then(response =>{
+            response.json().then(data =>{
+                console.log("fetchedTemplate", data);
+                element.url = data.url;
+                template.push({ 
+                    url : data.url,
+                    text: element.text,
+                    requestOptions :{
+                        body:JSON.stringify({memeType :element.text +"Template"}),
+                        method: "POST",
+                        headers:{'Content-Type': "application/json"}
+                      }});
+                      
+                      if(template.length === 4)
+                       setDATA(template);
+            })
+            
+        })
+       
+      }
+
       useEffect(() =>{
         
 
@@ -63,14 +89,12 @@ const ExploreCardComponent = () =>{
               
          });
         
-        DATA.forEach(element =>{
-            fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate",element.requestOptions)
-            .then(response =>{
-                    response.json().then(data => console.log("data",data));
-                })
-             
-        })
-      })
+       
+
+        DATA.map(fetchTemplate);
+       
+     
+      },[])
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
                    <Card>
