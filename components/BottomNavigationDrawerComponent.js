@@ -3,7 +3,7 @@ import { BottomNavigation , Text } from 'react-native-paper';
 import { View , StyleSheet , Dimensions} from'react-native' ;
 import MemeCategory from './MemeCategories';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Settings from './settingsScreen';
 
 const homeRoute = () => (
     <MemeCategory />
@@ -14,7 +14,7 @@ const favouritesRoute = () => (
 )
 
 const settingsRoute = () => (
-    <Text> Settings </Text>
+    <Settings />
 )
 
 const screenWidth = Dimensions.get('window').width ;
