@@ -1,14 +1,15 @@
 import  React,{useEffect , useState} from 'react';
-import { View , Text , StyleSheet ,SafeAreaView ,FlatList , Dimensions } from 'react-native';
+import { View , Text , StyleSheet ,SafeAreaView ,FlatList , Dimensions, Pressable } from 'react-native';
 import {Button , Card , Title } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-const ExploreCardComponent = () =>{
+const ExploreCardComponent = (props) =>{
   
 
-
+    const navigation = useNavigation();
       const [DATA, setDATA]= useState([
           {
               id : 1 ,
@@ -97,6 +98,7 @@ const ExploreCardComponent = () =>{
       },[])
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
+                 <Pressable onPress={() => navigation.navigate('Memes')}> 
                    <Card>
                 <Card.Content>
                    
@@ -104,6 +106,7 @@ const ExploreCardComponent = () =>{
                     <Card.Cover source={ { uri : item.url}} />
                 </Card.Content>
             </Card> 
+            </Pressable>
              </View>
       )
 

@@ -30,6 +30,9 @@ import {
 
 import SplashScreen from 'react-native-splash-screen'
 import BottomDrawerNavigator from './components/BottomNavigationDrawerComponent';
+import MemesDisplayScreen from './components/MemeScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const App: () => Node = () => {
@@ -38,18 +41,21 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
- 
+  const Stack = createNativeStackNavigator();
+  const getBottomDrawer = () => <BottomDrawerNavigator />
+  const getMemeScreen = () => <MemesDisplayScreen />
   useEffect(() => {
     SplashScreen.hide();
   })
 
   return (
-    <View > 
-
-      
-      {/* <MemeCategories /> */}
-      <BottomDrawerNavigator />
-    </View>
+    
+    <NavigationContainer>
+    <Stack.Navigator>
+       <Stack.Screen name="🚀 🚀 Meme Launchpad 🚀 🚀" component = {getBottomDrawer} />
+       <Stack.Screen name="Memes" component ={getMemeScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 };
 

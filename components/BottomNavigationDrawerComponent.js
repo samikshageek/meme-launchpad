@@ -37,7 +37,7 @@ const BottomDrawerNavigator = () => {
 
    
     return(
-    <View style ={{ height: screenHeight, paddingBottom : 8} }>
+    <View style ={{ height: screenHeight, paddingBottom : 64} }>
         <BottomNavigation 
          navigationState = {{ index , routes}}
          onIndexChange = { setIndex }
