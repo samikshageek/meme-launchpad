@@ -1,16 +1,34 @@
-import React ,{useState} from "react";
+import React ,{useState, useEffect} from "react";
 import { Text ,View , StyleSheet ,SafeAreaView, ScrollView, Dimensions ,Pressable} from 'react-native'
-import { Card , Avatar ,Button ,Title, FAB} from 'react-native-paper';
+import { Card , Avatar ,Button ,Title, FAB , ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const screenWidth= Dimensions.get('window').width;
 const screenHeight= Dimensions.get('window').height ;
 const MemesDisplayScreen = (props)=>{
 
+  const selectedMeme = props.navigation.route.params.memeSelected;
   const [markAsFavourite, setMarkAsFavourite] = useState('white');
+  
+  const requestOptions ={
+    method:"POST",
+    headers:{ 'Content-Type': 'application/json' },
+    body: {memeType: selectedMeme}
+  }
+  const fetchMemes = () => {
+     fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate",requestOptions)
+     .then(response =>{
+       console.log(response)
+     })
+  }
+
+   useEffect(() =>{
+     
+   })
 
    return(
      <SafeAreaView >
+       {console.log(selectedMeme)}
        <ScrollView >
          <View style={Styles.safeArea}>
        <View style={Styles.container}>

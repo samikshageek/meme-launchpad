@@ -98,7 +98,7 @@ const ExploreCardComponent = (props) =>{
       },[])
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
-                 <Pressable onPress={() => navigation.navigate('Memes')}> 
+                 <Pressable onPress={() => navigation.navigate('Memes',{ memeSelected : item.text})}> 
                    <Card>
                 <Card.Content>
                    

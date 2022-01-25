@@ -43,7 +43,7 @@ const App: () => Node = () => {
   };
   const Stack = createNativeStackNavigator();
   const getBottomDrawer = () => <BottomDrawerNavigator />
-  const getMemeScreen = () => <MemesDisplayScreen />
+  const getMemeScreen = (navigation) => <MemesDisplayScreen navigation={navigation}/>
   useEffect(() => {
     SplashScreen.hide();
   })
@@ -52,7 +52,7 @@ const App: () => Node = () => {
     
     <NavigationContainer>
     <Stack.Navigator>
-       <Stack.Screen name="🚀 🚀 Meme Launchpad 🚀 🚀" component = {getBottomDrawer} />
+       <Stack.Screen name="🚀  Meme Launchpad 🚀 " component = {getBottomDrawer} />
        <Stack.Screen name="Memes" component ={getMemeScreen} />
     </Stack.Navigator>
   </NavigationContainer>
