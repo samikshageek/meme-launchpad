@@ -9,35 +9,78 @@ const MemesDisplayScreen = (props)=>{
 
   const selectedMeme = props.navigation.route.params.memeSelected;
   const [markAsFavourite, setMarkAsFavourite] = useState('white');
-  
+  const [fetchedMemes , setFetchedMemes] = useState([]);
+  const [animating , setAnimating] = useState(true);
   const requestOptions ={
     method:"POST",
     headers:{ 'Content-Type': 'application/json' },
-    body: {memeType: selectedMeme}
+    body: JSON.stringify({memeType: selectedMeme})
   }
   const fetchMemes = () => {
-     fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate",requestOptions)
+     fetch("https://fun-meme-api.herokuapp.com/memes/ExploreMemes",requestOptions)
      .then(response =>{
-       console.log(response)
+       //console.log(response);
+       response.json().then(data => {
+         console.log("data",data);
+
+        let fetchedMemes =[];
+         data.forEach(element => {
+           fetchedMemes.push(element.url);
+         });
+         
+          
+           if(fetchedMemes.length === data.length)
+           setFetchedMemes(fetchedMemes)
+
+        });
      })
   }
 
    useEffect(() =>{
-     
-   })
+     fetchMemes();
+     setTimeout(()=> setAnimating(false),1200)
+   },[])
 
    return(
      <SafeAreaView >
        {console.log(selectedMeme)}
-       <ScrollView >
+       
+      { animating?  <ActivityIndicator  animating={animating} color="blue" size="large" /> : 
+      <ScrollView>
+           <View style={Styles.safeArea}>
+       <View style={Styles.container}>
+
+       {fetchedMemes.map(item => (
+           <Card style={Styles.card}>
+             <Card.Actions>
+              <FAB style={Styles.fab} small icon="heart" color={markAsFavourite}  onPress={() => setMarkAsFavourite('red') }/>
+             </Card.Actions>
+             <Card.Cover source={{uri: item}} />
+           </Card>
+         ))}
+         </View>
+       </View>
+      </ScrollView>  }
+
+      
+       {/* <ScrollView >
          <View style={Styles.safeArea}>
        <View style={Styles.container}>
-         
-         <Card style={Styles.card}>
+       
+         {fetchedMemes.map(item => (
+           <Card style={Styles.card}>
+             <Card.Actions>
+              <FAB style={Styles.fab} small icon="heart" color={markAsFavourite}  onPress={() => setMarkAsFavourite('red') }/>
+             </Card.Actions>
+             <Card.Cover source={{uri: item}} />
+           </Card>
+         ))} */}
+
+         {/* <Card style={Styles.card}>
           <Card.Actions>
              <FAB style={Styles.fab} small icon ="heart" color= {markAsFavourite} onPress={() => setMarkAsFavourite('red') } />
          </Card.Actions>
-           <Card.Cover source={{ uri : "https://c.tenor.com/ZDM5ya38ckcAAAAd/golden-girls-weekend.gif"}} />
+           <Card.Cover source={{ uri : "https://c.tenor.com/gjS0GNgAeM4AAAAC/stay-home-home.gif"}} />
          </Card>
          
          
@@ -82,11 +125,11 @@ const MemesDisplayScreen = (props)=>{
             <FAB style={Styles.fab} small icon ="heart" color= {markAsFavourite} onPress={() => setMarkAsFavourite('red') } />
           </Card.Actions>
            <Card.Cover source={{ uri : "https://c.tenor.com/ZDM5ya38ckcAAAAd/golden-girls-weekend.gif"}} />
-         </Card>
+         </Card> */}
          
+       {/* </View>
        </View>
-       </View>
-       </ScrollView>
+       </ScrollView> */}
     </SafeAreaView>
    )
 }
