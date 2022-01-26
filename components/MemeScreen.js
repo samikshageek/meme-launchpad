@@ -2,11 +2,13 @@ import React ,{useState, useEffect} from "react";
 import { Text ,View , StyleSheet ,SafeAreaView, ScrollView, Dimensions ,Pressable} from 'react-native'
 import { Card , Avatar ,Button ,Title, FAB , ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from "@react-navigation/native";
 
 const screenWidth= Dimensions.get('window').width;
 const screenHeight= Dimensions.get('window').height ;
 const MemesDisplayScreen = (props)=>{
 
+  const navigation = useNavigation();
   const selectedMeme = props.navigation.route.params.memeSelected;
   const [markAsFavourite, setMarkAsFavourite] = useState('white');
   const [fetchedMemes , setFetchedMemes] = useState([]);
@@ -38,7 +40,7 @@ const MemesDisplayScreen = (props)=>{
 
    useEffect(() =>{
      fetchMemes();
-     setTimeout(()=> setAnimating(false),1200)
+     setTimeout(()=> setAnimating(false),1600)
    },[])
 
    return(
@@ -52,10 +54,9 @@ const MemesDisplayScreen = (props)=>{
 
        {fetchedMemes.map(item => (
            <Card style={Styles.card}>
-             <Card.Actions>
-              <FAB style={Styles.fab} small icon="heart" color={markAsFavourite}  onPress={() => setMarkAsFavourite('red') }/>
-             </Card.Actions>
+             <Pressable onPress={()=> navigation.navigate("Add Text", {pickedMeme: item})}>
              <Card.Cover source={{uri: item}} />
+             </Pressable>
            </Card>
          ))}
          </View>
