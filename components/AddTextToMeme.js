@@ -1,8 +1,9 @@
 import React,{useState, useEffect} from "react";
-import { Text , View ,StyleSheet , Dimensions, ScrollView,Image} from 'react-native';
+import { Text , View ,StyleSheet , Dimensions, ScrollView,Image , Platform, PermissionsAndroid} from 'react-native';
 import { Card , Title, TextInput, ToggleButton , Button} from 'react-native-paper';
 import Share from 'react-native-share';
 import RNFetchBlob from "rn-fetch-blob";
+import CameraRoll from "@react-native-community/cameraroll";
 
 const screenHeight = Dimensions.get('screen').height;
 const screenWidth = Dimensions.get('screen').width ;
@@ -52,7 +53,60 @@ const AddText = (props) =>{
           console.log("error");
       }
     };
+    
+    const hasAndroidPermission = async() => {
+        const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
 
+        const hasPermission = await PermissionsAndroid.check(permission);
+        if (hasPermission) {
+          return true;
+        }
+      
+        const status = await PermissionsAndroid.request(permission);
+        return status === 'granted';
+      
+    }
+
+    const saveToGallery = async() => {
+      console.log("Platform",Platform.OS);
+     
+
+      let newImgUri = pickedMeme.lastIndexOf('/');
+      let imageName = pickedMeme.substring(newImgUri);
+
+      let dirs = RNFetchBlob.fs.dirs;
+      let path = Platform.OS === 'ios' ? dirs['MainBundleDir'] + imageName : dirs.PictureDir + imageName;
+
+      if (Platform.OS == 'android' && !(await hasAndroidPermission()) ) {
+           return;
+        } 
+        else {
+          
+
+          RNFetchBlob.config({
+            fileCache: true,
+            appendExt: 'png',
+            indicator: true,
+            IOSBackgroundTask: true,
+            path: path,
+            addAndroidDownloads: {
+              useDownloadManager: true,
+              notification: true,
+              path: path,
+              description: 'Image'
+            },
+      
+          }).fetch("GET", pickedMeme).then(res => {
+            console.log(res, 'end downloaded')
+          });
+        }
+          
+    // if (Platform.OS === "android" && !(await hasAndroidPermission())) {
+    //     return;
+    //   }
+    
+    //   CameraRoll.save(path, { type, album })
+    }
     
     const [topText , setTopText] = useState("");
     const [bottomText , setBottomText] = useState("");
@@ -88,20 +142,20 @@ const AddText = (props) =>{
 
     return(
         <>
-        {console.log("pickedMeme", pickedMeme, base64encodedString)}
+        {console.log("pickedMeme", pickedMeme)}
         <ScrollView style = {Styles.container}>
-        <TextInput type="outlined" label ="Enter Text" value={topText} onChangeText={text => setTopText(text)} style={{marginBottom:20}} s/>
-        <View style={{flexDirection:"row"}}> 
+        {/* <TextInput type="outlined" label ="Enter Text" value={topText} onChangeText={text => setTopText(text)} style={{marginBottom:20}} s/> */}
+        <View style={{flexDirection:"row", paddingTop:50}}> 
            <Card style={Styles.card}>
-           <Card.Content>
+           {/* <Card.Content>
                <Title>{topText}</Title>
-           </Card.Content>
+           </Card.Content> */}
               <Card.Cover source={{ uri : pickedMeme}} />
            </Card>
           <View style={Styles.toggleButtons} >
            <ToggleButton.Group value={toggleValue} onValueChange={value => setToggleValue(value)}>
              <ToggleButton icon ="share" value="left" onPress={customShare}/>
-             <ToggleButton icon ="download" value="right" />
+             <ToggleButton icon ="download" value="right" onPress={saveToGallery}/>
              <ToggleButton icon="heart" value="" />
            </ToggleButton.Group>
            </View>
@@ -121,7 +175,7 @@ export default AddText;
 
 const Styles= StyleSheet.create({
     card:{
-       width: screenWidth - (screenWidth/3),
+       width: screenWidth - (screenWidth/4),
        height: screenHeight/4,
        
        
