@@ -4,41 +4,43 @@ import { Card , Title, TextInput, ToggleButton , Button} from 'react-native-pape
 import Share from 'react-native-share';
 import RNFetchBlob from "rn-fetch-blob";
 import CameraRoll from "@react-native-community/cameraroll";
+import { useNavigation } from "@react-navigation/native";
 
 const screenHeight = Dimensions.get('screen').height;
 const screenWidth = Dimensions.get('screen').width ;
 
 const AddText = (props) =>{
     
+  const navigation= useNavigation();
     const fs = RNFetchBlob.fs;
     const [base64encodedString, setBase64String] = useState("");
     const pickedMeme = props.navigation.route.params.pickedMeme;
 
     const customShare = async() =>{
 
-        let imagePath ="";
-    RNFetchBlob.config({
+    //     let imagePath ="";
+    // RNFetchBlob.config({
 
-        fileCache: true
+    //     fileCache: true
       
-      }).fetch("GET", pickedMeme)       // the file is now downloaded at local storage
+    //   }).fetch("GET", pickedMeme)       // the file is now downloaded at local storage
       
-      .then(resp => {
+    //   .then(resp => {
       
-      imagePath = resp.path();                // to get the file path
+    //   imagePath = resp.path();                // to get the file path
       
-      return resp.readFile("base64");      // to get the base64 string
+    //   return resp.readFile("base64");      // to get the base64 string
       
-      })
+    //   })
       
-      .then(base64 => {
+    //   .then(base64 => {
       
-      // here base64 encoded file data is returned
+    //   // here base64 encoded file data is returned
       
-      setBase64String('data:image/gif;base64,'+ base64)
-      return fs.unlink(imagePath);          // to remove the file from local storage
+    //   setBase64String('data:image/gif;base64,'+ base64)
+    //   return fs.unlink(imagePath);          // to remove the file from local storage
       
-      });
+    //   });
 
       const shareOptions = {
           
@@ -114,6 +116,7 @@ const AddText = (props) =>{
 
     useEffect(() => {
         
+      let  imagePath ="";
         RNFetchBlob.config({
     
             fileCache: true
@@ -163,7 +166,8 @@ const AddText = (props) =>{
         {/* <TextInput type ="outlined" label ="Enter Bottom Text" value={bottomText} onChangeText={text => setBottomText(text)} style={{marginTop:70}} /> */}
          <View style={Styles.buttons}>
          {/* <Button icon="plus" mode="outlined">Add Text </Button> */}
-         <Button icon="eye" mode="outlined">Preview</Button>
+         {/* <Button icon="eye" mode="outlined">Preview</Button> */}
+         <Button icon="arrow-left" mode="outlined" onPress={() => navigation.navigate("🚀  Meme Launchpad 🚀 ")}>Back To Home</Button>
          </View>
          </ScrollView>
         </>

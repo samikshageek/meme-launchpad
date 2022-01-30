@@ -19,8 +19,8 @@ const CardComponent = (props) =>{
           </Card.Content>
           <Card.Cover source={{ uri: props.category[ Object.keys( props.category ) ] }} />
           <Card.Actions>
-          <Button>Cancel</Button>
-         <Button>Ok</Button>
+           <Button>Select</Button>
+        
           </Card.Actions>
            </Card>
    

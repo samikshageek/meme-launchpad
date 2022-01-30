@@ -4,13 +4,14 @@ import { View , StyleSheet , Dimensions} from'react-native' ;
 import MemeCategory from './MemeCategories';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Settings from './settingsScreen';
+import Favourites from './FavouritesScreen';
 
 const homeRoute = () => (
     <MemeCategory />
 );
 
 const favouritesRoute = () => (
-    <Text> Favourites </Text>
+    <Favourites />
 )
 
 const settingsRoute = () => (
