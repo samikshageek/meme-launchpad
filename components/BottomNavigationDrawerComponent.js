@@ -26,13 +26,13 @@ const BottomDrawerNavigator = () => {
     const [index ,  setIndex] = React.useState(0);
     const [routes] = React.useState([
         { key : "home", title:"Home" , icon : 'home' ,  color: '#3F51B5'  },
-        { key : "favourites", title : "Favourites" ,icon : 'heart' ,  color: '#795548'},
+        // { key : "favourites", title : "Favourites" ,icon : 'heart' ,  color: '#795548'},
         { key : "settings", title : 'Settings' , icon : 'cogs' , color :  '#607D8B' }
     ]);
 
     const renderScene = BottomNavigation.SceneMap({
         'home': homeRoute ,
-        'favourites' : favouritesRoute,
+        // 'favourites' : favouritesRoute,
         'settings' : settingsRoute
     })
 

@@ -159,7 +159,7 @@ const AddText = (props) =>{
            <ToggleButton.Group value={toggleValue} onValueChange={value => setToggleValue(value)}>
              <ToggleButton icon ="share" value="left" onPress={customShare}/>
              <ToggleButton icon ="download" value="right" onPress={saveToGallery}/>
-             <ToggleButton icon="heart" value="" />
+             {/* <ToggleButton icon="heart" value="" /> */}
            </ToggleButton.Group>
            </View>
         </View>
