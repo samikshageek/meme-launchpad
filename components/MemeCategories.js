@@ -11,10 +11,10 @@ const screenHeight = Dimensions.get('window').height ;
 const MemeCategory = (props) => {
   
   const [category, setCategory]= useState([
-    {"Trending Now": "https://c.tenor.com/olNJM0xe5oAAAAAC/working-from-home-wfh.gif"},
-  {"Popular Templates": "https://c.tenor.com/uPUduP9YZegAAAAC/sleepy-tired.gif"},
-   {"KidsFavourite Templates": "https://c.tenor.com/s8JMqoY6-CoAAAAi/crayon-shinchan.gif"},
-   {"Classic Templates": "https://c.tenor.com/OQJmvVwLZ5YAAAAi/tkthao219-bubududu.gif"},
+    {"Trending Now": "working-from-home-wfh.gif"},
+  {"Popular Templates": "sleepy-tired.gif"},
+   {"KidsFavourite Templates": "crayon-shinchan.gif"},
+   {"Classic Templates": "tkthao219-bubududu.gif"},
    {"Birthday Templates": "appy-birthday-sparkle.gif"}])
 
    const requestOptions={

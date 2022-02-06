@@ -1,6 +1,6 @@
 import  React,{useEffect , useState} from 'react';
 import { View , Text , StyleSheet ,SafeAreaView ,FlatList , Dimensions, Pressable } from 'react-native';
-import {Button , Card , Title } from 'react-native-paper';
+import {Button , Card , Title , ActivityIndicator} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -10,6 +10,7 @@ const ExploreCardComponent = (props) =>{
   
 
     const navigation = useNavigation();
+    const [animating , setAnimating] = useState(true);
       const [DATA, setDATA]= useState([
           {
               id : 1 ,
@@ -94,7 +95,7 @@ const ExploreCardComponent = (props) =>{
 
         DATA.map(fetchTemplate);
        
-     
+        setTimeout(()=> setAnimating(false),1600)
       },[])
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
@@ -103,7 +104,8 @@ const ExploreCardComponent = (props) =>{
                 <Card.Content>
                    
                     <Title> {item.text} </Title>
-                    <Card.Cover source={ { uri : item.url}} />
+                    { animating?  <ActivityIndicator  animating={animating} color="blue" size="large" /> : 
+                    <Card.Cover source={ { uri : item.url}} /> }
                 </Card.Content>
             </Card> 
             </Pressable>
