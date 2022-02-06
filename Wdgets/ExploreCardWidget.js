@@ -44,7 +44,7 @@ const ExploreCardComponent = (props) =>{
           },
           {
               id : 4 ,
-              url : "https://c.tenor.com/j__DWnP3UAIAAAAS/ve-veranda.gif",
+              url : "j__DWnP3UAIAAAAS/ve-veranda.gif",
               text :"foodie",
               requestOptions :{
                   body:"",
@@ -95,7 +95,7 @@ const ExploreCardComponent = (props) =>{
 
         DATA.map(fetchTemplate);
        
-        setTimeout(()=> setAnimating(false),1600)
+        setTimeout(()=> setAnimating(false),2500)
       },[])
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
