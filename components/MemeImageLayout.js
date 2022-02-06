@@ -55,9 +55,9 @@ const ImgLayout = (props) => {
         
 
             </View>
-            <View style={styles.searchbar}>
+            {/* <View style={styles.searchbar}>
                <SearchBoxComponent />
-            </View>
+            </View> */}
 
             <ExploreCardComponent />
             

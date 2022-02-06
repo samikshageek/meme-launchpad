@@ -15,7 +15,7 @@ const MemeCategory = (props) => {
   {"Popular Templates": "https://c.tenor.com/uPUduP9YZegAAAAC/sleepy-tired.gif"},
    {"KidsFavourite Templates": "https://c.tenor.com/s8JMqoY6-CoAAAAi/crayon-shinchan.gif"},
    {"Classic Templates": "https://c.tenor.com/OQJmvVwLZ5YAAAAi/tkthao219-bubududu.gif"},
-   {"Birthday Templates": "https://c.tenor.com/S7EwxHkrEFEAAAAC/happy-birthday-sparkle.gif"}])
+   {"Birthday Templates": "appy-birthday-sparkle.gif"}])
 
    const requestOptions={
      method:"POST",

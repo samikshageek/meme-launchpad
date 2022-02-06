@@ -57,7 +57,7 @@ const App: () => Node = () => {
     <Stack.Navigator>
        <Stack.Screen name="🚀  Meme Launchpad 🚀 " component = {getBottomDrawer} />
        <Stack.Screen name="Memes" component ={getMemeScreen} />
-       <Stack.Screen name="Add Text" component = { getAddTextScreen} />
+       <Stack.Screen name="Preview" component = { getAddTextScreen} />
     </Stack.Navigator>
   </NavigationContainer>
   );

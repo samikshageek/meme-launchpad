@@ -54,7 +54,7 @@ const MemesDisplayScreen = (props)=>{
 
        {fetchedMemes.map(item => (
            <Card style={Styles.card}>
-             <Pressable onPress={()=> navigation.navigate("Add Text", {pickedMeme: item})}>
+             <Pressable onPress={()=> navigation.navigate("Preview", {pickedMeme: item})}>
              <Card.Cover source={{uri: item}} />
              </Pressable>
            </Card>

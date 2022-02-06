@@ -48,8 +48,11 @@ const AddText = (props) =>{
       }
       
       try{
+        if(base64encodedString !== ""){
           const shareResponse = await Share.open(shareOptions);
           console.log(JSON.stringify(shareResponse))
+        }
+     
       }
       catch(error){
           console.log("error");
@@ -116,6 +119,7 @@ const AddText = (props) =>{
 
     useEffect(() => {
         
+      let isMounted= true;
       let  imagePath ="";
         RNFetchBlob.config({
     
@@ -134,12 +138,12 @@ const AddText = (props) =>{
           .then(base64 => {
           
           // here base64 encoded file data is returned
-          
+          if(isMounted)
           setBase64String('data:image/gif;base64,'+ base64)
           return fs.unlink(imagePath);          // to remove the file from local storage
           
           });
-    
+          return () => { isMounted = false }; 
           
     },[])
 
