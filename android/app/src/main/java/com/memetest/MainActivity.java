@@ -1,4 +1,4 @@
-package com.memetest;
+package com.memelaunchpad;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
