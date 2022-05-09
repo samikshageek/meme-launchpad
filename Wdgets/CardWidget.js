@@ -10,7 +10,7 @@ const CardComponent = (props) =>{
 
     <View>
          {/* {console.log("props.Item", props.Item)} */}
-         {console.log("props.temp", props.category[Object.keys(props.category)], Object.keys(props.category) ) }
+         {/* {console.log("props.temp", props.category[Object.keys(props.category)], Object.keys(props.category) ) } */}
           
          <Card style={{ marginBottom: "5%"}}>
           <Card.Content>

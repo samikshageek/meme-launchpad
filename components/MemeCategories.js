@@ -29,7 +29,7 @@ const MemeCategory = (props) => {
      let indexOfSpace = currentItem[0].indexOf(' ') ;
 
     
-     console.log("memeTypeToFetch ",currentItem[0] , currentItem[0].indexOf(' '), currentItem[0].substring(0 , indexOfSpace) )
+     //console.log("memeTypeToFetch ",currentItem[0] , currentItem[0].indexOf(' '), currentItem[0].substring(0 , indexOfSpace) )
 
        await fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate", {
          method:"POST",
@@ -39,7 +39,7 @@ const MemeCategory = (props) => {
        }).then(response => {
          response.json()
          .then(data => {
-           console.log("d",data);
+           //console.log("d",data);
            templates.push({[currentItem[0]] : data.url});
 
            if(templates.length === 5){

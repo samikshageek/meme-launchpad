@@ -23,7 +23,7 @@ const MemesDisplayScreen = (props)=>{
      .then(response =>{
        //console.log(response);
        response.json().then(data => {
-         console.log("data",data);
+         //console.log("data",data);
 
         let fetchedMemes =[];
          data.forEach(element => {
@@ -45,7 +45,7 @@ const MemesDisplayScreen = (props)=>{
 
    return(
      <SafeAreaView >
-       {console.log(selectedMeme)}
+       {/* {console.log(selectedMeme)} */}
        
       { animating?  <ActivityIndicator  animating={animating} color="blue" size="large" /> : 
       <ScrollView>
@@ -162,7 +162,9 @@ const Styles = StyleSheet.create({
     width: "50%",
     position:"relative",
     borderColor:"green",
-   borderWidth:5,
+    borderWidth:2.5,
+   borderTopColor:"#9EFD38",
+    borderBottomColor:"#9EFD38",
    marginBottom:20
    
   }

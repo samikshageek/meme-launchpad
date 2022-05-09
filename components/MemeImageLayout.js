@@ -23,9 +23,9 @@ const ImgLayout = (props) => {
     
        fetch("https://fun-meme-api.herokuapp.com/trending", requestOptions)
         .then(response => {
-            console.log(response);
+            //console.log(response);
             response.json().then(data => {
-                console.log(data);
+                //console.log(data);
             })
         })
 

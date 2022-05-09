@@ -62,7 +62,7 @@ const ExploreCardComponent = (props) =>{
         fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate",element.requestOptions)
         .then(response =>{
             response.json().then(data =>{
-                console.log("fetchedTemplate", data);
+                // console.log("fetchedTemplate", data);
                 element.url = data.url;
                 template.push({ 
                     url : data.url,

@@ -50,12 +50,12 @@ const AddText = (props) =>{
       try{
         if(base64encodedString !== ""){
           const shareResponse = await Share.open(shareOptions);
-          console.log(JSON.stringify(shareResponse))
+          //console.log(JSON.stringify(shareResponse))
         }
      
       }
       catch(error){
-          console.log("error");
+          //console.log("error");
       }
     };
     
@@ -73,7 +73,7 @@ const AddText = (props) =>{
     }
 
     const saveToGallery = async() => {
-      console.log("Platform",Platform.OS);
+      //console.log("Platform",Platform.OS);
      
 
       let newImgUri = pickedMeme.lastIndexOf('/');
@@ -102,7 +102,7 @@ const AddText = (props) =>{
             },
       
           }).fetch("GET", pickedMeme).then(res => {
-            console.log(res, 'end downloaded')
+           // console.log(res, 'end downloaded')
           });
         }
           
@@ -149,7 +149,7 @@ const AddText = (props) =>{
 
     return(
         <>
-        {console.log("pickedMeme", pickedMeme)}
+        {/* {console.log("pickedMeme", pickedMeme)} */}
         <ScrollView style = {Styles.container}>
         {/* <TextInput type="outlined" label ="Enter Text" value={topText} onChangeText={text => setTopText(text)} style={{marginBottom:20}} s/> */}
         <View style={{flexDirection:"column", paddingTop:10}}> 
