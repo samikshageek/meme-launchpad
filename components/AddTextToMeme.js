@@ -152,13 +152,16 @@ const AddText = (props) =>{
         {console.log("pickedMeme", pickedMeme)}
         <ScrollView style = {Styles.container}>
         {/* <TextInput type="outlined" label ="Enter Text" value={topText} onChangeText={text => setTopText(text)} style={{marginBottom:20}} s/> */}
-        <View style={{flexDirection:"row", paddingTop:50}}> 
-           <Card style={Styles.card}>
+        <View style={{flexDirection:"column", paddingTop:10}}> 
+           {/* <Card style={Styles.card}> */}
            {/* <Card.Content>
                <Title>{topText}</Title>
            </Card.Content> */}
-              <Card.Cover source={{ uri : pickedMeme}} />
-           </Card>
+              {/* <Card.Cover source={{ uri : pickedMeme}} /> */}
+           {/* </Card>  */}
+           <View style={Styles.image}>
+             <Image source={{uri : pickedMeme}} style={{width:screenWidth, height:screenHeight/2}} />
+           </View>
           <View style={Styles.toggleButtons} >
            <ToggleButton.Group value={toggleValue} onValueChange={value => setToggleValue(value)}>
              <ToggleButton icon ="share" value="left" onPress={customShare}/>
@@ -184,7 +187,7 @@ export default AddText;
 const Styles= StyleSheet.create({
     card:{
        width: screenWidth - (screenWidth/4),
-       height: screenHeight/4,
+       height: screenHeight/4     
        
        
     },
@@ -193,17 +196,22 @@ const Styles= StyleSheet.create({
         margin:10
     },
     toggleButtons:{
-        paddingLeft:20,
-        paddingRight:10
+        margin:10,
+        // paddingLeft:20,
+        // paddingRight:10
     },
     buttons:{
         flexDirection:"row",
         justifyContent:"space-between",
-        marginTop:100,
+        marginTop:30,
         justifyContent:"center"
     },
     text:{
         fontSize:25
-    }
+    },
+    image :{ 
+       borderWidth:2,
+       borderColor:"#0000FF"
+      }
     
 })

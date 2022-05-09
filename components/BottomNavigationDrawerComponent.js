@@ -5,6 +5,7 @@ import MemeCategory from './MemeCategories';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Settings from './settingsScreen';
 import Favourites from './FavouritesScreen';
+import { NavigationContainer, DefaultTheme , DarkTheme } from "@react-navigation/native";
 
 const homeRoute = () => (
     <MemeCategory />
@@ -44,6 +45,7 @@ const BottomDrawerNavigator = () => {
          onIndexChange = { setIndex }
          renderScene={ renderScene}
          activeColor='yellow'
+         theme={DarkTheme}
          />
     </View>
     )

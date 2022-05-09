@@ -31,7 +31,7 @@ import {
 import SplashScreen from 'react-native-splash-screen'
 import BottomDrawerNavigator from './components/BottomNavigationDrawerComponent';
 import MemesDisplayScreen from './components/MemeScreen';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer , DarkTheme , DefaultTheme} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AddText from './components/AddTextToMeme';
 
@@ -53,7 +53,7 @@ const App: () => Node = () => {
 
   return (
     
-    <NavigationContainer>
+    <NavigationContainer theme={DefaultTheme}>
     <Stack.Navigator>
        <Stack.Screen name="🚀  Meme Launchpad 🚀 " component = {getBottomDrawer} />
        <Stack.Screen name="Memes" component ={getMemeScreen} />

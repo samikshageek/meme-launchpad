@@ -53,7 +53,7 @@ const MemesDisplayScreen = (props)=>{
        <View style={Styles.container}>
 
        {fetchedMemes.map(item => (
-           <Card style={Styles.card}>
+           <Card style={Styles.card} key={item}>
              <Pressable onPress={()=> navigation.navigate("Preview", {pickedMeme: item})}>
              <Card.Cover source={{uri: item}} />
              </Pressable>
@@ -157,11 +157,14 @@ const Styles = StyleSheet.create({
    
   },
   card:{
-    height: screenHeight/4,
+    //height: screenHeight/4,
+    height: screenHeight-500,
     width: "50%",
     position:"relative",
-    borderColor:"orange",
-   borderWidth:5
+    borderColor:"green",
+   borderWidth:5,
+   marginBottom:20
+   
   }
  
 })
