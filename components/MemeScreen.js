@@ -1,8 +1,9 @@
 import React ,{useState, useEffect} from "react";
-import { Text ,View , StyleSheet ,SafeAreaView, ScrollView, Dimensions ,Pressable} from 'react-native'
+import { Text ,View , StyleSheet ,SafeAreaView, ScrollView, Dimensions ,Pressable , TouchableOpacity} from 'react-native'
 import { Card , Avatar ,Button ,Title, FAB , ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
+import FastImage from 'react-native-fast-image'
 
 const screenWidth= Dimensions.get('window').width;
 const screenHeight= Dimensions.get('window').height ;
@@ -53,11 +54,19 @@ const MemesDisplayScreen = (props)=>{
        <View style={Styles.container}>
 
        {fetchedMemes.map(item => (
-           <Card style={Styles.card} key={item}>
-             <Pressable onPress={()=> navigation.navigate("Preview", {pickedMeme: item})}>
-             <Card.Cover source={{uri: item}} />
-             </Pressable>
-           </Card>
+          //  <Card style={Styles.card} key={item}>
+          //    <Pressable onPress={()=> navigation.navigate("Preview", {pickedMeme: item})}>
+          //    <Card.Cover source={{uri: item}} />
+          //    </Pressable>
+          //  </Card>
+         
+          <TouchableOpacity style={{width:"50%"}} onPress={()=> navigation.navigate("Preview", {pickedMeme: item})} key={item}>
+          <FastImage style={Styles.card} 
+             source={{ uri:item, priority: FastImage.priority.normal}}
+             //resizeMode={FastImage.resizeMode.contain}
+          />
+        </TouchableOpacity>
+       
          ))}
          </View>
        </View>
@@ -159,7 +168,8 @@ const Styles = StyleSheet.create({
   card:{
     //height: screenHeight/4,
     height: screenHeight-500,
-    width: "50%",
+    //width: "50%",
+    width:"100%",
     position:"relative",
     borderColor:"green",
     borderWidth:2.5,

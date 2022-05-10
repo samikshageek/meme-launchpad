@@ -13,7 +13,7 @@ const MemeCategory = (props) => {
   const [category, setCategory]= useState([
     {"Trending Now": "working-from-home-wfh.gif"},
   {"Popular Templates": "sleepy-tired.gif"},
-   {"KidsFavourite Templates": "crayon-shinchan.gif"},
+   {"Wedding Templates": "crayon-shinchan.gif"},
    {"Classic Templates": "tkthao219-bubududu.gif"},
    {"Birthday Templates": "appy-birthday-sparkle.gif"}])
 
