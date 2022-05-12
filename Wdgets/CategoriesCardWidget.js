@@ -14,7 +14,7 @@ const CardComponent = (props) =>{
     
    useEffect(() =>{
     
-    setTimeout(()=> setAnimating(false),2500)
+    setTimeout(()=> setAnimating(false),7500)
   },[])
     return(
 

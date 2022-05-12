@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { Text , View ,StyleSheet , Dimensions, ScrollView,Image , Platform, PermissionsAndroid} from 'react-native';
 import { Card , Title, TextInput, ToggleButton , Button} from 'react-native-paper';
+import FastImage from 'react-native-fast-image'
 import Share from 'react-native-share';
 import RNFetchBlob from "rn-fetch-blob";
 import CameraRoll from "@react-native-community/cameraroll";
@@ -160,7 +161,12 @@ const AddText = (props) =>{
               {/* <Card.Cover source={{ uri : pickedMeme}} /> */}
            {/* </Card>  */}
            <View style={Styles.image}>
-             <Image source={{uri : pickedMeme}} style={{width:screenWidth, height:screenHeight/2}} />
+             {/* <Image source={{uri : pickedMeme}} style={{width:screenWidth, height:screenHeight/2}} /> */}
+
+             <FastImage style={{width:screenWidth, height:screenHeight/2}} 
+             source={{ uri: pickedMeme, priority: FastImage.priority.normal}}
+             
+          />
            </View>
           <View style={Styles.toggleButtons} >
            <ToggleButton.Group value={toggleValue} onValueChange={value => setToggleValue(value)}>

@@ -95,7 +95,7 @@ const ExploreCardComponent = (props) =>{
 
         DATA.map(fetchTemplate);
        
-        setTimeout(()=> setAnimating(false),2500)
+        setTimeout(()=> setAnimating(false),7500)
       },[])
       const renderItem = ({item}) =>(
              <View style = {styles.container} >
