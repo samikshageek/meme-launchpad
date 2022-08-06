@@ -20,7 +20,8 @@ const ExploreCardComponent = (props) =>{
                   body:"",
                   method: "POST",
                   headers:{'Content-Type': "application/json"}
-                }
+                },
+                background:"white"
           },
           {
               id: 2 ,
@@ -29,7 +30,8 @@ const ExploreCardComponent = (props) =>{
               requestOptions :{
                   body:"",
               method: "POST",
-              headers:{'Content-Type': "application/json"}
+              headers:{'Content-Type': "application/json"},
+              background:"white"
             }
           },
           {
@@ -39,7 +41,8 @@ const ExploreCardComponent = (props) =>{
               requestOptions :{
                   body:"",
                   method: "POST",
-                  headers:{'Content-Type': "application/json"}
+                  headers:{'Content-Type': "application/json"},
+                  background:"white"
              }
           },
           {
@@ -49,7 +52,8 @@ const ExploreCardComponent = (props) =>{
               requestOptions :{
                   body:"",
                   method: "POST",
-                  headers:{'Content-Type': "application/json"}
+                  headers:{'Content-Type': "application/json"} ,
+                  background:"white"
               }
           }
       ]
@@ -57,6 +61,14 @@ const ExploreCardComponent = (props) =>{
       
       let  template=[]; 
       
+      const generateColor = () => {
+        const randomColor = Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .padStart(6, '0');
+        return `#${randomColor}`;
+      };
+
+
       const fetchTemplate = (element) => {
          
         fetch("https://fun-meme-api.herokuapp.com/memes/ExploreTemplate",element.requestOptions)
@@ -71,7 +83,9 @@ const ExploreCardComponent = (props) =>{
                         body:JSON.stringify({memeType :element.text +"Template"}),
                         method: "POST",
                         headers:{'Content-Type': "application/json"}
-                      }});
+                      },
+                      background:generateColor()
+                    });
                       
                       if(template.length === 4)
                        setDATA(template);
@@ -101,9 +115,9 @@ const ExploreCardComponent = (props) =>{
              <View style = {styles.container} >
                  <Pressable onPress={() => navigation.navigate('Memes',{ memeSelected : item.text})}> 
                    <Card>
-                <Card.Content>
+                <Card.Content style={{ backgroundColor: item.background ,borderRadius:40}}>
                    
-                    <Title> {item.text} </Title>
+                    <Title style={{textTransform:"capitalize",color:"white"}}> {item.text} </Title>
                     { animating?  <ActivityIndicator  animating={animating} color="blue" size="large" /> : 
                     <Card.Cover source={ { uri : item.url}} /> }
                 </Card.Content>

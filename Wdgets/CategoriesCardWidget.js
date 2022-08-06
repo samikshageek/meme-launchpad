@@ -16,15 +16,23 @@ const CardComponent = (props) =>{
     
     setTimeout(()=> setAnimating(false),7500)
   },[])
+
+  const generateColor = () => {
+    const randomColor = Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, '0');
+    return `#${randomColor}`;
+  };
+  
     return(
 
     <View>
          {/* {console.log("props.Item", props.Item)} */}
          {/* {console.log("props.temp", props.category[Object.keys(props.category)], Object.keys(props.category) , currentItem) } */}
          
-         <Card style={{ marginBottom: "5%"}}>
+         <Card style={{ marginBottom: "7%",borderRadius:30, backgroundColor:generateColor()}}>
           <Card.Content>
-          <Title>{Object.keys(props.category)}</Title>
+          <Title style={{color:"white"}}>{Object.keys(props.category)}</Title>
           
           </Card.Content>
           { animating?  <ActivityIndicator  animating={animating} color="blue" size="large" /> : 
