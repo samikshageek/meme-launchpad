@@ -95,19 +95,54 @@ const ExploreCardComponent = (props) =>{
        
       }
 
+      const fetchTemplateDynamically = () => {
+         
+        fetch("http://fun-meme-api.herokuapp.com/allTemplates")
+        .then(response =>{
+            response.json().then(data =>{
+                // console.log("fetchedTemplate", data);
+
+                data.forEach(item => {
+
+                    template.push({
+                        url : item.url,
+                        text : item.text,
+                        requestOptions :{
+                            body:JSON.stringify({memeType :item.text+"Template"}),
+                            method: "POST",
+                            headers:{'Content-Type': "application/json"}
+                          },
+                        background:generateColor()
+                    })
+                })
+ 
+                      
+                      if(template.length > 2 )
+                       setDATA(template);
+            })
+            
+        })
+       
+      }
+
       useEffect(() =>{
         
-
-         DATA.forEach(element => {
-            element.requestOptions.body = JSON.stringify({
-                memeType :element.text+"Template"
-            })
-              
-         });
+        /*this code used in first and second version*/
         
-       
 
-        DATA.map(fetchTemplate);
+        //  DATA.forEach(element => {
+        //     element.requestOptions.body = JSON.stringify({
+        //         memeType :element.text+"Template"
+        //     })
+              
+        //  });
+        
+
+        // DATA.map(fetchTemplate);
+
+        /*this code used in first and second version*/
+
+        fetchTemplateDynamically() //Dynamically Fetch template Categories .Applicable from 3rd version onwards
        
         setTimeout(()=> setAnimating(false),7500)
       },[])
