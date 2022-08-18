@@ -10,12 +10,15 @@ const screenHeight = Dimensions.get('window').height ;
 
 const MemeCategory = (props) => {
   
-  const [category, setCategory]= useState([
-    {"Trending Now": "working-from-home-wfh.gif"},
-  {"Popular Templates": "sleepy-tired.gif"},
-   {"Wedding Templates": "crayon-shinchan.gif"},
-   {"Classic Templates": "tkthao219-bubududu.gif"},
-   {"Birthday Templates": "appy-birthday-sparkle.gif"}])
+  // const [category, setCategory]= useState([
+  //   {"Trending Now": "working-from-home-wfh.gif"},
+  // {"Popular Templates": "sleepy-tired.gif"},
+  //  {"Wedding Templates": "crayon-shinchan.gif"},
+  //  {"Classic Templates": "tkthao219-bubududu.gif"},
+  //  {"Birthday Templates": "appy-birthday-sparkle.gif"}])
+
+
+   const [category, setCategory]= useState([])
 
    const requestOptions={
      method:"POST",
@@ -23,6 +26,7 @@ const MemeCategory = (props) => {
    }
 
    let templates = [];
+   let fetchedCatgory=[]
 
    const fetchCategoriesTemplate = async(item) => {
      let currentItem = Object.keys( item);
@@ -49,9 +53,42 @@ const MemeCategory = (props) => {
          
    }
 
+   const fetchCategoriesDynamically = () => {
+
+    fetch("http://fun-meme-api.herokuapp.com/allTemplates")
+    .then(response =>{
+        response.json().then(data =>{
+             
+
+            data.forEach(item => {
+               if(item.templateName.includes("Category") || item.templateName.includes("category")){
+              
+                let obj ={}
+                obj[item.text] = item.url
+                fetchedCatgory.push(obj)
+
+               }
+                
+            })
+
+            
+            if(fetchedCatgory.length > 0){
+              setCategory(fetchedCatgory)
+            }
+                 
+        })
+        
+    })
+
+
+
+
+   }
+
    useEffect(() =>{
      
-     category.map(fetchCategoriesTemplate);
+    fetchCategoriesDynamically() //Version 1.3 making categories Dynamic
+    //category.map(fetchCategoriesTemplate); //v1.3 commented this line
 
    },[])
 

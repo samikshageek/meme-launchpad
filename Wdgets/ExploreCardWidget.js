@@ -104,6 +104,7 @@ const ExploreCardComponent = (props) =>{
 
                 data.forEach(item => {
 
+                  if(!item.templateName.includes("category") && !item.templateName.includes("Category"))
                     template.push({
                         url : item.url,
                         text : item.text,
