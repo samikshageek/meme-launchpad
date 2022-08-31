@@ -1,6 +1,7 @@
 import React , {useState, useEffect} from "react";
-import {View , Text , StyleSheet, ImageBackground} from 'react-native';
+import {View , Text , StyleSheet, ImageBackground , TouchableOpacity} from 'react-native';
 import { Switch , Card , Divider} from "react-native-paper";
+import { Linking } from "react-native";
 
 const Settings = ()=>{
    
@@ -14,10 +15,21 @@ const Settings = ()=>{
        <View style={styles.container}>
           <Card style={styles.card}>
               
-              <View  style={styles.mainView}>
+              {/* <View  style={styles.mainView}>
             <Text style={styles.baseText}>Toggle Theme</Text>
             <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
-          </View>
+          </View> */}
+           <View style={styles.legal}>
+            <TouchableOpacity onPress={() => Linking.openURL("https://play.google.com/store/apps/details?id=com.memelaunchpad") }>
+               <Text style={styles.baseText}> Rate us   ✎</Text>
+            </TouchableOpacity>
+           </View>
+          <Divider />
+          <View style={styles.legal}>
+            <TouchableOpacity onPress={() => Linking.openURL("https://pages.flycricket.io/meme-launchpad/privacy.html") }>
+               <Text style={styles.baseText}> Privacy Policy  📝 </Text>
+            </TouchableOpacity>
+           </View>
           <Divider />
            <View style={styles.legal}>
                <Text style={styles.baseText}> Legal & About</Text>
