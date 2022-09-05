@@ -1,4 +1,4 @@
-import  React,{useEffect , useState} from 'react';
+import  React,{useEffect , useState , memo} from 'react';
 import { View , Text , StyleSheet ,SafeAreaView ,FlatList , Dimensions, Pressable } from 'react-native';
 import {Button , Card , Title , ActivityIndicator} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -167,7 +167,7 @@ const ExploreCardComponent = (props) =>{
          
 
             <SafeAreaView> 
-                <FlatList data={DATA}
+                <FlatList data={DATA} initialNumToRender ={2} maxToRenderPerBatch={10}
                  renderItem={renderItem} horizontal= {true} />
             </SafeAreaView>
         </View>
@@ -185,4 +185,4 @@ const styles = StyleSheet.create({
     }
     
 })
-export default ExploreCardComponent;
+export default memo(ExploreCardComponent);
