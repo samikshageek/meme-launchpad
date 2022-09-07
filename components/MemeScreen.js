@@ -1,5 +1,5 @@
 import React ,{useState, useEffect} from "react";
-import { Text ,View , StyleSheet ,SafeAreaView, ScrollView, Dimensions ,Pressable , TouchableOpacity} from 'react-native'
+import { Text ,View , StyleSheet ,SafeAreaView, ScrollView, Dimensions ,Pressable , TouchableOpacity , FlatList} from 'react-native'
 import { Card , Avatar ,Button ,Title, FAB , ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
@@ -44,33 +44,60 @@ const MemesDisplayScreen = (props)=>{
      setTimeout(()=> setAnimating(false),1600)
    },[])
 
-   return(
-     <SafeAreaView >
-       {/* {console.log(selectedMeme)} */}
+   const renderItem = ({item}) =>(
+     
+   
        
-      { animating?  <ActivityIndicator  animating={animating} color="blue" size="large" /> : 
-      <ScrollView>
-           <View style={Styles.safeArea}>
-       <View style={Styles.container}>
-
-       {fetchedMemes.map(item => (
-          //  <Card style={Styles.card} key={item}>
-          //    <Pressable onPress={()=> navigation.navigate("Preview", {pickedMeme: item})}>
-          //    <Card.Cover source={{uri: item}} />
-          //    </Pressable>
-          //  </Card>
-         
           <TouchableOpacity style={{width:"50%"}} onPress={()=> navigation.navigate("Preview", {pickedMeme: item})} key={item}>
           <FastImage style={Styles.card} 
              source={{ uri:item, priority: FastImage.priority.normal}}
              //resizeMode={FastImage.resizeMode.contain}
           />
         </TouchableOpacity>
+      
+      
        
-         ))}
-         </View>
-       </View>
-      </ScrollView>  }
+
+       
+      
+)
+
+   return(
+     <SafeAreaView >
+       {/* {console.log(selectedMeme)} */}
+       
+      { animating?  <ActivityIndicator  animating={animating} color="blue" size="large" /> : 
+      <View style={Styles.flatlist}>
+         <FlatList 
+         numColumns= {2}
+          data={fetchedMemes}
+          renderItem={renderItem} 
+        />
+        </View>
+      // <ScrollView>
+      //      <View style={Styles.safeArea}>
+      //  <View style={Styles.container}>
+
+      //  {fetchedMemes.map(item => (
+      //     //  <Card style={Styles.card} key={item}>
+      //     //    <Pressable onPress={()=> navigation.navigate("Preview", {pickedMeme: item})}>
+      //     //    <Card.Cover source={{uri: item}} />
+      //     //    </Pressable>
+      //     //  </Card>
+         
+      //     <TouchableOpacity style={{width:"50%"}} onPress={()=> navigation.navigate("Preview", {pickedMeme: item})} key={item}>
+      //     <FastImage style={Styles.card} 
+      //        source={{ uri:item, priority: FastImage.priority.normal}}
+      //        //resizeMode={FastImage.resizeMode.contain}
+      //     />
+      //   </TouchableOpacity>
+       
+      //    ))}
+      //    </View>
+      //  </View>
+      // </ScrollView> 
+      
+      }
 
       
        {/* <ScrollView >
@@ -157,6 +184,11 @@ const Styles = StyleSheet.create({
    
    backgroundColor:"blue"
 
+  },
+  flatlist:{
+    display:"flex",
+     flexDirection: "row" ,
+     margin : 10
   },
   container:{
    display:"flex",
